@@ -11,5 +11,31 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix
+    .sass('resources/views/admin/assets/scss/reset.scss', 'public/backend/assets/css/reset.css') //copia sass da pasta resouse para public
+    .sass('resources/views/admin/assets/scss/boot.scss', 'public/backend/assets/css/boot.css')
+    .sass('resources/views/admin/assets/scss/login.scss', 'public/backend/assets/css/login.css')
+
+    .scripts([
+        'resources/views/admin/assets/js/jquery.min.js'
+    ], 'public/backend/assets/js/jquery.js')
+
+    .scripts([
+        'resources/views/admin/assets/js/login.js'
+    ], 'public/backend/assets/js/login.js')
+
+    .copyDirectory('resources/views/admin/assets/css/fonts', 'public/backend/assets/css/fonts') //copia diretorio de fonts de resource para public
+
+    .copyDirectory('resources/views/admin/assets/images', 'public/backend/assets/images') //copia diretorio de imagens de resource para public
+
+
+
+    .options({
+        processCssUrls: false   //desabilita pre processamento de urls
+    })
+
+    .version()
+
+;
+
+
