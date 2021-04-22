@@ -11,6 +11,8 @@
     <link rel="icon" type="image/png" href="backend/assets/images/favicon.png"/>
 
     <title>UpAdmin - Site Control</title>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 
@@ -24,15 +26,16 @@
                 <h1>Login</h1>
             </header>
 
-            <form name="login" action="" method="post" autocomplete="off">
+            <form name="login" action="{{ route('admin.login.do') }}" method="post" autocomplete="off">
+
                 <label>
                     <span class="field icon-envelope">E-mail:</span>
-                    <input type="email" name="email" placeholder="Informe seu e-mail" required/>
+                    <input type="email" name="email" placeholder="Informe seu e-mail" value="ricardo@teste.com" />
                 </label>
 
                 <label>
                     <span class="field icon-unlock-alt">Senha:</span>
-                    <input type="password" name="password_check" placeholder="Informe sua senha" required/>
+                    <input type="password" name="password_check" placeholder="Informe sua senha" />
                 </label>
 
                 <button class="gradient gradient-orange radius icon-sign-in">Entrar</button>
