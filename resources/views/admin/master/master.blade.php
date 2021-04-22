@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="{{ mix('backend/assets/css/libs.css') }}"/>
     <link rel="stylesheet" href="{{ mix('backend/assets/css/boot.css') }}"/>
     <link rel="stylesheet" href="{{ mix('backend/assets/css/style.css') }}"/>
+
+    @hasSection('css')
+        @yield('css')
+    @endif
+
     <link rel="icon" type="image/png" href="assets/images/favicon.png"/>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -36,8 +41,8 @@
         </article>
 
         <ul class="dash_sidebar_nav">
-            <li class="dash_sidebar_nav_item active">
-                <a class="icon-tachometer" href="dashboard.php?app=dashboard/index">Dashboard</a>
+            <li class="dash_sidebar_nav_item {{ isActive('admin.home') }}">
+                <a class="icon-tachometer" href="{{ route('admin.home') }}">Dashboard</a>
             </li>
             <li class="dash_sidebar_nav_item"><a class="icon-users" href="dashboard.php?app=users/index">Clientes</a>
                 <ul class="dash_sidebar_nav_submenu">
@@ -91,6 +96,10 @@
 <script src="{{mix('backend/assets/js/jquery.js')}}"></script>
 <script src="{{mix('backend/assets/js/libs.js')}}"></script>
 <script src="{{mix('backend/assets/js/scripts.js')}}"></script>
+
+@hasSection('css')
+    @yield('css')
+@endif
 
 </body>
 </html>
