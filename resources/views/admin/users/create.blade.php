@@ -21,6 +21,15 @@
 
     <div class="dash_content_app_box">
         <div class="nav">
+
+            @if ($errors->all())
+                @foreach ($errors->all() as $error )
+                    @message(['color'=>'orange'])
+                    <p class="icon-asterisk">{{ $error }}</p>
+                    @endmessage
+                @endforeach
+            @endif
+
             <ul class="nav_tabs">
                 <li class="nav_tabs_item">
                     <a href="#data" class="nav_tabs_item_link active">Dados Cadastrais</a>
@@ -36,7 +45,10 @@
                 </li>
             </ul>
 
-            <form class="app_form" action="" method="post" enctype="multipart/form-data">
+
+            <form class="app_form" action="{{ route('admin.users.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+
                 <div class="nav_tabs_content">
                     <div id="data">
                         <div class="label_gc">
@@ -52,7 +64,7 @@
 
                         <label class="label">
                             <span class="legend">*Nome:</span>
-                            <input type="text" name="name" placeholder="Nome Completo" value=""/>
+                            <input type="text" name="name" placeholder="Nome Completo" value="{{old('name')}}"/>
                         </label>
 
                         <div class="label_g2">
@@ -68,7 +80,7 @@
                             <label class="label">
                                 <span class="legend">*CPF:</span>
                                 <input type="tel" class="mask-doc" name="document" placeholder="CPF do Cliente"
-                                       value=""/>
+                                       value="{{old('document')}}"/>
                             </label>
                         </div>
 
@@ -76,13 +88,13 @@
                             <label class="label">
                                 <span class="legend">*RG:</span>
                                 <input type="text" name="document_secondary" placeholder="RG do Cliente"
-                                       value=""/>
+                                       value="{{old('')}}"/>
                             </label>
 
                             <label class="label">
                                 <span class="legend">Órgão Expedidor:</span>
                                 <input type="text" name="document_secondary_complement" placeholder="Expedição"
-                                       value=""/>
+                                       value="{{old('document_secondary')}}"/>
                             </label>
                         </div>
 
@@ -90,13 +102,13 @@
                             <label class="label">
                                 <span class="legend">*Data de Nascimento:</span>
                                 <input type="tel" name="date_of_birth" class="mask-date"
-                                       placeholder="Data de Nascimento" value=""/>
+                                       placeholder="Data de Nascimento" value="{{old('date_of_birth')}}"/>
                             </label>
 
                             <label class="label">
                                 <span class="legend">*Naturalidade:</span>
                                 <input type="text" name="place_of_birth" placeholder="Cidade de Nascimento"
-                                       value=""/>
+                                       value="{{old('place_of_birth')}}"/>
                             </label>
                         </div>
 
@@ -133,20 +145,20 @@
                                     <label class="label">
                                         <span class="legend">*Profissão:</span>
                                         <input type="text" name="occupation" placeholder="Profissão do Cliente"
-                                               value=""/>
+                                               value="{{old('occupation')}}"/>
                                     </label>
 
                                     <label class="label">
                                         <span class="legend">*Renda:</span>
                                         <input type="tel" name="income" class="mask-money"
-                                               placeholder="Valores em Reais" value=""/>
+                                               placeholder="Valores em Reais" value="{{old('income')}}"/>
                                     </label>
                                 </div>
 
                                 <label class="label">
                                     <span class="legend">*Empresa:</span>
                                     <input type="text" name="company_work" placeholder="Contratante"
-                                           value=""/>
+                                           value="{{old('company_work')}}"/>
                                 </label>
                             </div>
                         </div>
@@ -162,47 +174,47 @@
                                     <label class="label">
                                         <span class="legend">*CEP:</span>
                                         <input type="tel" name="zipcode" class="mask-zipcode zip_code_search"
-                                               placeholder="Digite o CEP" value=""/>
+                                               placeholder="Digite o CEP" value="{{old('zipcode')}}"/>
                                     </label>
                                 </div>
 
                                 <label class="label">
                                     <span class="legend">*Endereço:</span>
                                     <input type="text" name="street" class="street"
-                                           placeholder="Endereço Completo" value=""/>
+                                           placeholder="Endereço Completo" value="{{old('street')}}"/>
                                 </label>
 
                                 <div class="label_g2">
                                     <label class="label">
                                         <span class="legend">*Número:</span>
                                         <input type="text" name="number" placeholder="Número do Endereço"
-                                               value=""/>
+                                               value="{{old('number')}}"/>
                                     </label>
 
                                     <label class="label">
                                         <span class="legend">Complemento:</span>
                                         <input type="text" name="complement" placeholder="Completo (Opcional)"
-                                               value=""/>
+                                               value="{{old('complement')}}"/>
                                     </label>
                                 </div>
 
                                 <label class="label">
                                     <span class="legend">*Bairro:</span>
                                     <input type="text" name="neighborhood" class="neighborhood"
-                                           placeholder="Bairro" value=""/>
+                                           placeholder="Bairro" value="{{old('neighborhood')}}"/>
                                 </label>
 
                                 <div class="label_g2">
                                     <label class="label">
                                         <span class="legend">*Estado:</span>
                                         <input type="text" name="state" class="state" placeholder="Estado"
-                                               value=""/>
+                                               value="{{old('state')}}"/>
                                     </label>
 
                                     <label class="label">
                                         <span class="legend">*Cidade:</span>
                                         <input type="text" name="city" class="city" placeholder="Cidade"
-                                               value=""/>
+                                               value="{{old('city')}}"/>
                                     </label>
                                 </div>
                             </div>
@@ -225,7 +237,7 @@
                                     <label class="label">
                                         <span class="legend">*Celular:</span>
                                         <input type="tel" name="cell" class="mask-cell"
-                                               placeholder="Número do Telefonce com DDD" value=""/>
+                                               placeholder="Número do Telefonce com DDD" value="cell"/>
                                     </label>
                                 </div>
                             </div>
@@ -242,13 +254,13 @@
                                     <label class="label">
                                         <span class="legend">*E-mail:</span>
                                         <input type="email" name="email" placeholder="Melhor e-mail"
-                                               value=""/>
+                                               value="{{old('email')}}"/>
                                     </label>
 
                                     <label class="label">
                                         <span class="legend">Senha:</span>
                                         <input type="password" name="password" placeholder="Senha de acesso"
-                                               value=""/>
+                                               value="{{old('password')}}"/>
                                     </label>
                                 </div>
                             </div>
@@ -267,7 +279,7 @@
                                 <label class="label">
                                     <span class="legend">Tipo de Comunhão:</span>
                                     <select name="type_of_communion" class="select2">
-                                        <option value="Comunhão Universal de Ben">Comunhão Universal de Bens</option>
+                                        <option value="Comunhão Universal de Bens">Comunhão Universal de Bens</option>
                                         <option value="Comunhão Parcial de Bens">Comunhão Parcial de Bens</option>
                                         <option value="Separação Total de Bens">Separação Total de Bens</option>
                                         <option value="Participação Final de Aquestos">Participação Final de Aquestos
@@ -278,7 +290,7 @@
                                 <label class="label">
                                     <span class="legend">Nome:</span>
                                     <input type="text" name="spouse_name" placeholder="Nome do Cônjuge"
-                                           value=""/>
+                                           value="{{old('spouse_name')}}"/>
                                 </label>
 
                                 <div class="label_g2">
@@ -294,7 +306,7 @@
                                     <label class="label">
                                         <span class="legend">CPF:</span>
                                         <input type="text" class="mask-doc" name="spouse_document"
-                                               placeholder="CPF do Cliente" value=""/>
+                                               placeholder="CPF do Cliente" value="{{old('spouse_document')}}"/>
                                     </label>
                                 </div>
 
@@ -302,13 +314,13 @@
                                     <label class="label">
                                         <span class="legend">RG:</span>
                                         <input type="text" name="spouse_document_secondary"
-                                               placeholder="RG do Cliente" value=""/>
+                                               placeholder="RG do Cliente" value="{{old('spouse_document_secondary')}}"/>
                                     </label>
 
                                     <label class="label">
                                         <span class="legend">Órgão Expedidor:</span>
                                         <input type="text" name="spouse_document_secondary_complement"
-                                               placeholder="Expedição" value=""/>
+                                               placeholder="Expedição" value="{{old('spouse_document_secondary_complement')}}"/>
                                     </label>
                                 </div>
 
@@ -316,13 +328,13 @@
                                     <label class="label">
                                         <span class="legend">Data de Nascimento:</span>
                                         <input type="tel" class="mask-date" name="spouse_date_of_birth"
-                                               placeholder="Data de Nascimento" value=""/>
+                                               placeholder="Data de Nascimento" value="{{old('spouse_date_of_birth')}}"/>
                                     </label>
 
                                     <label class="label">
                                         <span class="legend">Naturalidade:</span>
                                         <input type="text" name="spouse_place_of_birth"
-                                               placeholder="Cidade de Nascimento" value=""/>
+                                               placeholder="Cidade de Nascimento" value="{{old('spouse_place_of_birth')}}"/>
                                     </label>
                                 </div>
 
@@ -330,20 +342,20 @@
                                     <label class="label">
                                         <span class="legend">Profissão:</span>
                                         <input type="text" name="spouse_occupation"
-                                               placeholder="Profissão do Cliente" value=""/>
+                                               placeholder="Profissão do Cliente" value="{{old('spouse_occupation')}}"/>
                                     </label>
 
                                     <label class="label">
                                         <span class="legend">Renda:</span>
                                         <input type="text" class="mask-money" name="spouse_income"
-                                               placeholder="Valores em Reais" value=""/>
+                                               placeholder="Valores em Reais" value="{{old('spouse_income')}}"/>
                                     </label>
                                 </div>
 
                                 <label class="label">
                                     <span class="legend">Empresa:</span>
                                     <input type="text" name="spouse_company_work" placeholder="Contratante"
-                                           value=""/>
+                                           value="{{old('spouse_company_work')}}"/>
                                 </label>
                             </div>
                         </div>

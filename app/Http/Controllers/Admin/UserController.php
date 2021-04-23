@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\User as UserRequest;
+use App\User;
 
 class UserController extends Controller
 {
@@ -43,9 +45,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $user = new User();
+        $user->fill($request->all());
+
+        var_dump($user->getAttributes(), $request->all());
     }
 
     /**

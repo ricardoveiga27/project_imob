@@ -135,6 +135,16 @@ return [
         ],
     ],
 
+    'values' => [
+        'civil_status' => [
+            'maried' => 'casado',
+            'separated' => 'separado',
+            'single' => 'solteiro',
+            'divorced' => 'divorciado',
+            'widower' => 'viúvo',
+        ]
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
@@ -181,6 +191,34 @@ return [
         'year'      => 'ano',
         'description' => 'descrição',
         'password_confirmation' => 'confirmação da senha',
+
+        //personalizações
+        'document' => 'CPF',
+        'document_secondary' => 'RG',
+        'document_secondary_complement' => 'órgão expedidor',
+        'date_of_birth' => 'data de nascimento',
+        'place_of_birth' => 'naturalidade',
+        'occupation' => 'profissão',
+        'income' => 'renda',
+        'company_work' => 'empresa',
+        'civil_status' => 'estado civil',
+
+        'zipcode' => 'cep',
+
+        'telephone' => 'telefone',
+
+        'spouse_name' => 'nome do cônjuge',
+        'spouse_document' => 'CPF do cônjuge',
+        'spouse_document_secondary' => 'RG do cônjuge',
+        'spouse_document_secondary_complement' => 'órgão expedidor do cônjuge',
+        'spouse_genre'=> 'sexo do cônjuge',
+        'spouse_date_of_birth' => 'data de nascimento do cônjuge',
+        'spouse_place_of_birth' => 'naturalidade do cônjuge',
+        'spouse_occupation' => 'profissão do cônjuge',
+        'spouse_income' => 'renda do cônjuge',
+        'spouse_company_work' => 'empresa do cônjuge',
+
+
     ],
 
 ];
