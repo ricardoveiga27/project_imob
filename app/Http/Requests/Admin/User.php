@@ -58,12 +58,12 @@ class User extends FormRequest
             //Spouse CONJUJE
             'type_of_communion'=>'required_if:civil_status,married,separated|
             in:Comunhão Universal de Bens,Comunhão Parcial de Bens,Separação Total de Bens,Participação Final de Aquestos',
-            'spouse_name' => 'required_if:civil_status,married,separated | min:3 | max:191',
+            'spouse_name' => 'required_if:civil_status,married,separated | max:191',
             // 'spouse_genre' => 'required_if:civil_status,married,separated | in:male, female, other',
             // 'spouse_document' => 'required_if:civil_status,married,separated |min:11 |max:14 | unique:users',
-            'spouse_document_secondary'=>'required_if:civil_status,married,separated | min:8|max:12',
+            'spouse_document_secondary'=>'required_if:civil_status,married,separated |max:12',
             'spouse_document_secondary_complement'=>'required_if:civil_status,married,separated',
-            'spouse_date_of_birth'=>'required_if:civil_status,married,separated |date_format:d/m/Y',
+            'spouse_date_of_birth'=>'required_if:civil_status,married,separated',
             'spouse_place_of_birth'=>'required_if:civil_status,married,separated',
             'spouse_occupation'=>'required_if:civil_status,married,separated',
             'spouse_income'=>'required_if:civil_status,married,separated',

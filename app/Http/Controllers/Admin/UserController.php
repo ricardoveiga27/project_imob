@@ -16,7 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        $users = User::all();
+
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -47,10 +49,9 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = new User();
-        $user->fill($request->all());
+        $userCreate = User::create($request->all());
 
-        var_dump($user->getAttributes(), $request->all());
+        var_dump($userCreate, $request->all());
     }
 
     /**
@@ -72,7 +73,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -82,9 +84,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+        $user = User::where('id', $id)->first();
+
+        $user->setLessorAttribute($request->lessor);
+        $user->setLesseeAttribute($request->lessee);
+        $user->setAdminAttribute($request->admin);
+        $user->setClientAttribute($request->client);
+
+        $user->fill($request->all());
+
+        $user->save();
+
+        var_dump($user);
     }
 
     /**
