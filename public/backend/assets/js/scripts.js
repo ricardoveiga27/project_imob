@@ -187,6 +187,26 @@ $(function () {
 
 });
 
+//
+
+    function normalizeSpouse() {
+        if (typeof ($('select[name="civil_status"]')) !== 'undefined') {
+            if ($('select[name="civil_status"]').val() === 'married' || $('select[name="civil_status"]').val() === 'separated') {
+                $('.content_spouse input, .content_spouse select').prop('disabled', false);
+            } else {
+                $('.content_spouse input, .content_spouse select').prop('disabled', true);
+            }
+        }
+    }
+
+    normalizeSpouse();
+
+    $('select[name="civil_status"]').change(function () {
+        normalizeSpouse();
+    });
+
+
+
 // TINYMCE INIT
 
 tinyMCE.init({

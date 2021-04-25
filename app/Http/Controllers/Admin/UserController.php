@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\User as UserRequest;
 use App\User;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -28,7 +29,8 @@ class UserController extends Controller
      */
     public function team()
     {
-        return view('admin.users.team');
+        $users = User::where('admin', 1)->get();
+        return view('admin.users.team', compact('users'));
     }
 
     /**
@@ -51,7 +53,14 @@ class UserController extends Controller
     {
         $userCreate = User::create($request->all());
 
-        var_dump($userCreate, $request->all());
+        if(!empty($request->file('cover'))){
+            $userCreate->cover = $request->file('cover')->storeAs('user', str_slug($request->name) . '-' . str_replace('.', '', microtime(true)) . '.' . $request->file('cover')->extension());
+            $userCreate->save();
+        }
+
+        return redirect()->route('admin.users.edit', [
+            'user' => $userCreate->id
+        ])->with(['color' => 'green', 'message' => 'Cliente cadastrado com sucesso!']);
     }
 
     /**
@@ -93,7 +102,24 @@ class UserController extends Controller
         $user->setAdminAttribute($request->admin);
         $user->setClientAttribute($request->client);
 
+        if(!empty($request->file('cover'))) {
+            Storage::delete($user->cover);
+            $user->cover = '';
+        }
+
         $user->fill($request->all());
+
+        if(!empty($request->file('cover'))){
+            $user->cover = $request->file('cover')->storeAs('user', str_slug($request->name) . '-' . str_replace('.', '', microtime(true)) . '.' . $request->file('cover')->extension());
+        }
+
+        if(!$user->save()){
+            return redirect()->back()->withInput()->withErrors($user);
+        }
+
+        return redirect()->route('admin.users.edit', [
+            'user' => $user->id
+        ])->with(['color' => 'green', 'message' => 'Cliente atualizado com sucesso!']);
 
         $user->save();
 
