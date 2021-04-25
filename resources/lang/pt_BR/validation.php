@@ -203,6 +203,12 @@ return [
         'company_work' => 'empresa',
         'civil_status' => 'estado civil',
 
+        //empresas
+        'social_name'=>'razão social',
+        'alias_name'=> 'nome fantasia',
+        'document_company'=> 'ÇNPJ',
+        'document_company_secondary'=> 'inscrição estadual',
+
         'zipcode' => 'cep',
 
         'telephone' => 'telefone',
