@@ -36,7 +36,7 @@
             <img class="dash_sidebar_user_thumb" src="{{ asset('backend/assets/images/avatar.jpg') }}" alt="" title=""/>
 
             <h1 class="dash_sidebar_user_name">
-                <a href="">Gustavo Web</a>
+                <a href="">Ricardo Veiga</a>
             </h1>
         </article>
 
@@ -52,10 +52,10 @@
                     <li class="{{ isActive('admin.users.create') }}"><a href="{{ route('admin.users.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
-            <li class="dash_sidebar_nav_item"><a class="icon-home" href="dashboard.php?app=properties/index">Imóveis</a>
+            <li class="dash_sidebar_nav_item {{ isActive('admin.home') }}"><a class="icon-home" href="{{ route('admin.properties.index') }}">Imóveis</a>
                 <ul class="dash_sidebar_nav_submenu">
-                    <li class=""><a href="dashboard.php?app=properties/index">Ver Todos</a></li>
-                    <li class=""><a href="dashboard.php?app=properties/create">Criar Novo</a></li>
+                    <li class="{{ isActive('admin.properties.index') }}"><a href="{{ route('admin.properties.index') }}">Ver Todos</a></li>
+                    <li class="{{ isActive('admin.properties.create') }}"><a href="{{ route('admin.properties.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
             <li class="dash_sidebar_nav_item"><a class="icon-file-text" href="dashboard.php?app=contracts/index">Contratos</a>
@@ -94,6 +94,7 @@
 
 
 <script src="{{mix('backend/assets/js/jquery.js')}}"></script>
+<script src="{{asset('backend/assets/js/tinymce/tinymce.min.js')}}"></script>
 <script src="{{mix('backend/assets/js/libs.js')}}"></script>
 <script src="{{mix('backend/assets/js/scripts.js')}}"></script>
 
