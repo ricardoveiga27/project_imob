@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\User as UserRequest;
+use App\Support\Cropper;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 
@@ -104,6 +105,7 @@ class UserController extends Controller
 
         if(!empty($request->file('cover'))) {
             Storage::delete($user->cover);
+            Cropper::flush($user->cover);
             $user->cover = '';
         }
 

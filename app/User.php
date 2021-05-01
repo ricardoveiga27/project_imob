@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Support\Cropper;
 use DateTime;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -88,7 +89,12 @@ class User extends Authenticatable
 
     public function getUrlCoverAttribute()
     {
-        return Storage::url($this->cover);
+        if(!empty($this->cover))
+        {
+            return Storage::url(Cropper::thumb($this->cover, 500, 500));
+        }
+
+        return '';
     }
 
     public function setLessorAttribute($value)

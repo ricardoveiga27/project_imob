@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Property as PropertyRequest;
 use App\Property;
+use App\PropertyImage;
+use App\Support\Cropper;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Stmt\Return_;
 
 class PropertyController extends Controller
 {
@@ -42,11 +46,19 @@ class PropertyController extends Controller
     {
         $createProperty = Property::create($request->all());
 
+        if($request->allFiles()){
+            foreach($request->allFiles()['files'] as $image){
+                $propertyImage = new PropertyImage();
+                $propertyImage->property = $createProperty->id;
+                $propertyImage->path = $image->store('properties/' . $createProperty->id);
+                $propertyImage->save();
+                unset($propertyImage);
+            }
+        }
+
         return redirect()->route('admin.properties.edit', [
             'property' => $createProperty->id
         ])->with(['color' => 'green', 'message' => 'Imóvel cadastrado com sucesso!']);
-
-        var_dump($createProperty);
     }
 
     /**
@@ -57,7 +69,7 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -108,6 +120,18 @@ class PropertyController extends Controller
 
         $property->save();
 
+        if($request->allFiles()){
+            foreach($request->allFiles()['files'] as $image){
+                $propertyImage = new PropertyImage();
+                $propertyImage->property = $property->id;
+                $propertyImage->path = $image->store('properties/' . $property->id);
+                $propertyImage->save();
+                unset($propertyImage);
+            }
+
+        }
+
+
         return redirect()->route('admin.properties.edit', [
             'property' => $property->id
         ])->with(['color' => 'green', 'message' => 'Imóvel alterado com sucesso!']);
@@ -122,5 +146,40 @@ class PropertyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function imageSetCover(Request $request)
+    {
+        $imageSetCover = PropertyImage::where('id', $request->image)->first();
+        $allImage = PropertyImage::where('property', $imageSetCover->property)->get();
+
+        foreach($allImage as $image){
+            $image->cover = null;
+            $image->save();
+        }
+
+        $imageSetCover->cover = true;
+        $imageSetCover->save();
+
+        $json = [
+            'sucess' => true
+        ];
+
+        return response()->json($json);
+    }
+
+    public function imageRemove(Request $request)
+    {
+        $imageDelete = PropertyImage::where('id', $request->image)->first();
+
+        Storage::delete($imageDelete->path);
+        Cropper::flush($imageDelete->path);
+        $imageDelete->delete();
+
+        $json = [
+            'success' => true
+        ];
+
+        return response()->json($json);
     }
 }

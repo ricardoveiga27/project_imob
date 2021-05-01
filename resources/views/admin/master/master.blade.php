@@ -13,11 +13,11 @@
         @yield('css')
     @endif
 
-    <link rel="icon" type="image/png" href="{{ asset('backend/assets/images/favicon.png') }}"/>
+    <link rel="icon" type="image/ico" href="{{ asset('backend/assets/images/favicon.ico') }}"/>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>UpAdmin - Site Control</title>
+    <title>KUBO - Site Control</title>
 </head>
 <body>
 
@@ -77,7 +77,7 @@
                 <div class="dash_userbar_box_content">
                     <span class="icon-align-justify icon-notext mobile_menu transition btn btn-green"></span>
                     <h1 class="transition">
-                        <i class="icon-imob text-orange"></i><a href="">Up<b>Admin</b></a>
+                        <i class="icon-cube text-orange"></i><a href="">KUBO<b>Admin</b></a>
                     </h1>
                     <div class="dash_userbar_box_bar no_mobile">
                         <a class="text-red icon-sign-out" href="{{ route('admin.logout')}}">Sair</a>

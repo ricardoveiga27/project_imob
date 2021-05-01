@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="{{ mix('backend/assets/css/boot.css') }}"/>
     <link rel="stylesheet" href="{{ mix('backend/assets/css/login.css') }}"/>
 
-    <link rel="icon" type="image/png" href="backend/assets/images/favicon.png"/>
+    <link rel="icon" type="image/png" href="backend/assets/images/.png"/>
 
-    <title>UpAdmin - Site Control</title>
+    <title>KUBO - Site Control</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -22,8 +22,11 @@
     <div class="dash_login_left">
         <article class="dash_login_left_box">
             <header class="dash_login_box_headline">
-                <div class="dash_login_box_headline_logo icon-imob icon-notext"></div>
-                <h1>Login</h1>
+                {{-- <div class="dash_login_box_headline_logo icon-imob icon-notext"></div> --}}
+                <div>
+                    <img src="{{ asset('backend/assets/images/logo_kubo.png') }}" alt="">
+                </div>
+                {{-- <h1>Login</h1> --}}
             </header>
 
             <form name="login" action="{{ route('admin.login.do') }}" method="post" autocomplete="off">
@@ -42,7 +45,7 @@
             </form>
 
             <footer>
-                <p>Desenvolvido por <a href="https://www.upinside.com.br">www.<b>upinside</b>.com.br</a></p>
+                <p>Desenvolvido por <a href="#">www.<b>kuboimoveis</b>.com.br</a></p>
                 <p>&copy; <?= date("Y"); ?> - Todos os Direitos Reservados</p>
                 <p class="dash_login_left_box_support">
                     <a target="_blank"

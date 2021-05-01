@@ -24,7 +24,7 @@
             @foreach ($users as $user)
                 <article class="user radius">
                     <div class="cover"
-                        style="background-size: cover; background-image: url({{'http://127.0.0.1:8000/storage/' . $user->cover }}) "></div>
+                        style="background-size: cover; background-image: url({{$user->url_cover}});"></div>
                     <h4>{{ $user->name }}</h4>
 
                     <div class="info">
