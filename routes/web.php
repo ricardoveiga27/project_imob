@@ -33,6 +33,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
         Route::delete('properties/image-remove', 'PropertyController@imageRemove')->name('properties.imageRemove');
         Route::resource('properties', 'PropertyController');
 
+        /** Contratos */
+        Route::resource('contracts', 'ContractController');
+
     });
 
     /** Logout */

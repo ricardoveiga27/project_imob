@@ -52,21 +52,21 @@
                     <li class="{{ isActive('admin.users.create') }}"><a href="{{ route('admin.users.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
-            <li class="dash_sidebar_nav_item {{ isActive('admin.home') }}"><a class="icon-home" href="{{ route('admin.properties.index') }}">Imóveis</a>
+            <li class="dash_sidebar_nav_item {{ isActive('admin.properties') }}"><a class="icon-home" href="{{ route('admin.properties.index') }}">Imóveis</a>
                 <ul class="dash_sidebar_nav_submenu">
                     <li class="{{ isActive('admin.properties.index') }}"><a href="{{ route('admin.properties.index') }}">Ver Todos</a></li>
                     <li class="{{ isActive('admin.properties.create') }}"><a href="{{ route('admin.properties.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
-            <li class="dash_sidebar_nav_item"><a class="icon-file-text" href="dashboard.php?app=contracts/index">Contratos</a>
+            <li class="dash_sidebar_nav_item {{ isActive('admin.contracts') }}"><a class="icon-file-text" href="{{ route('admin.contracts.index') }}">Contratos</a>
                 <ul class="dash_sidebar_nav_submenu">
-                    <li class=""><a href="dashboard.php?app=contracts/index">Ver Todos</a></li>
-                    <li class=""><a href="dashboard.php?app=contracts/create">Criar Novo</a></li>
+                    <li class="{{ isActive('admin.contracts.index') }}"><a href="{{ route('admin.contracts.index') }}">Ver Todos</a></li>
+                    <li class="{{ isActive('admin.contracts.create') }}"><a href="{{ route('admin.contracts.create') }}">Criar Novo</a></li>
                 </ul>
             </li>
             <li class="dash_sidebar_nav_item"><a class="icon-reply" href="">Ver Site</a></li>
             <li class="dash_sidebar_nav_item"><a class="icon-sign-out on_mobile" href="{{ route('admin.logout')}}" target="_blank">Sair</a></li>
-        </ul>
+           </ul>
 
     </aside>
 

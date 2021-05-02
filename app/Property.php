@@ -74,7 +74,7 @@ class Property extends Model
         }
 
         if(empty($cover['path']) || !File::exists('../public/storage/' . $cover['path'])) {
-            return url (asset('backend/assets/images/avatar.jpg'));
+            return url (asset('backend/assets/images/imovel_sem_foto.png'));
         }
 
         return Storage::url(Cropper::thumb($cover['path'], 1366, 768));
