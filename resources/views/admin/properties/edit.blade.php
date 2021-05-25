@@ -420,10 +420,14 @@
                 var button = $(this);
 
                 $.post(button.data('action'), {}, function(response){
-                    if(response.success === true) {
-                        $('.property_image').find('a.btn-green').removeClass('btn-green');
+
+                    $('.property_image').find('a.btn-green').removeClass('btn-green');
                         button.addClass('btn-green');
-                    }
+
+                    // if(response.success === true) {
+                    //     $('.property_image').find('a.btn-green').removeClass('btn-green');
+                    //     button.addClass('btn-green');
+                    // }
                 }, 'json');
             });
 
