@@ -73,6 +73,15 @@
                             </label>
                         </div>
 
+                        <label class="label">
+                            <span class="legend">Status do Contrato:</span>
+                            <select name="status" class="select2">
+                                <option value="pending" {{ (old('status') === 'pending' ? 'selected' : ($contract->status === 'pending' ? 'selected' : '')) }}>Pendente</option>
+                                <option value="active" {{ (old('status') === 'active' ? 'selected' : ($contract->status === 'active' ? 'selected' : '')) }}>Ativo</option>
+                                <option value="canceled" {{ (old('status') === 'canceled' ? 'selected' : ($contract->status === 'canceled' ? 'selected' : '')) }}>Cancelado</option>
+                            </select>
+                        </label>
+
                         <div class="app_collapse">
                             <div class="app_collapse_header mt-2 collapse">
                                 <h3>Proprietário</h3>
@@ -186,7 +195,7 @@
                                     <label class="label">
                                         <span class="legend">Condomínio:</span>
                                         <input type="text" name="condominium" class="mask-money" placeholder="Valor do Condomínio"
-                                            value="{{ old('tributte') ?? $contract->tribute}}"/>
+                                            value="{{ old('tributte') ?? $contract->condominium}}"/>
                                     </label>
                                 </div>
 

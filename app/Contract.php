@@ -25,36 +25,45 @@ class Contract extends Model
         'deadline',
         'start_at',
         'status'
-     ];
+    ];
 
-     public function ownerObject()
-     {
-         return $this->hasOne(User::class, 'id', 'owner');
-     }
+    public function ownerObject()
+    {
+        return $this->hasOne(User::class, 'id', 'owner');
+    }
 
-     public function ownerCompanyObject()
-     {
-         return $this->hasOne(Company::class, 'id', 'owner_company');
-     }
+    public function ownerCompanyObject()
+    {
+        return $this->hasOne(Company::class, 'id', 'owner_company');
+    }
 
-     public function propertyObject()
-     {
-         return $this->hasOne(Property::class, 'id', 'property');
-     }
+    public function propertyObject()
+    {
+        return $this->hasOne(Property::class, 'id', 'property');
+    }
 
-     public function acquirerObject()
-     {
-         return $this->hasOne(User::class, 'id', 'acquirer');
-     }
+    public function acquirerObject()
+    {
+        return $this->hasOne(User::class, 'id', 'acquirer');
+    }
 
-     public function acquirerCompanyObject()
-     {
-         return $this->hasOne(Company::class, 'id', 'acquirer_company');
-     }
-
-
+    public function acquirerCompanyObject()
+    {
+        return $this->hasOne(Company::class, 'id', 'acquirer_company');
+    }
 
 
+
+
+    public function scopeActive($query){
+        return $query->where('status', 'active');
+    }
+    public function scopePendent($query){
+        return $query->where('status', 'pendent');
+    }
+    public function scopeCanceled($query){
+        return $query->where('status', 'canceled');
+    }
 
 
 

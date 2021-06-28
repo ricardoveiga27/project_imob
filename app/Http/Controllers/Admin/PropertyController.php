@@ -10,6 +10,7 @@ use App\Support\Cropper;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Stmt\Return_;
 
 class PropertyController extends Controller
@@ -45,6 +46,12 @@ class PropertyController extends Controller
     public function store(PropertyRequest $request)
     {
         $createProperty = Property::create($request->all());
+
+        $validator = Validator::make($request->only('files'), ['files.*' => 'image']);
+
+        if($validator->fails() === true) {
+            return redirect()->back()->withInput()->with(['color' => 'orange', 'message' => 'todas as imagens devem ser do tipo: jpg, jpeg ou png!']);
+        }
 
         if($request->allFiles()){
             foreach($request->allFiles()['files'] as $image){
@@ -119,6 +126,12 @@ class PropertyController extends Controller
         $property->setGourmetBalconyAttribute($request->gourmet_balcony);
 
         $property->save();
+
+        $validator = Validator::make($request->only('files'), ['files.*' => 'image']);
+
+        if($validator->fails() === true) {
+            return redirect()->back()->withInput()->with(['color' => 'orange', 'message' => 'todas as imagens devem ser do tipo: jpg, jpeg ou png!']);
+        }
 
         if($request->allFiles()){
             foreach($request->allFiles()['files'] as $image){

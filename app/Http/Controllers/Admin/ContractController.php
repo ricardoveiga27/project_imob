@@ -8,6 +8,8 @@ use App\Http\Requests\Admin\Contract as ContractRequest;
 use App\Property;
 use App\User;
 use Illuminate\Http\Request;
+use SebastianBergmann\Environment\Console;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 
 class ContractController extends Controller
 {
@@ -90,6 +92,18 @@ class ContractController extends Controller
         $contract = Contract::where('id', $id)->first();
         $contract->fill($request->all());
         $contract->save();
+
+        if($request->property) {
+            $property = Property::where('id', $request->property)->first();
+
+            if( $request->status === 'active') {
+                $property->status = '0';
+                $property->save();
+            } else {
+                $property->status = '1';
+                $property->save();
+            }
+        }
 
         return redirect()->route('admin.contracts.edit', [
             'contract' => $contract->id

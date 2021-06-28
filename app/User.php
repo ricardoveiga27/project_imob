@@ -100,6 +100,7 @@ class User extends Authenticatable
     public function scopeLessors($query){
         return $query->where('lessor', true);
     }
+    
     public function scopeLessees($query){
         return $query->where('lessee', true);
     }

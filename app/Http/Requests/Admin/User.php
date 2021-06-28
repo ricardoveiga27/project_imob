@@ -45,6 +45,7 @@ class User extends FormRequest
             'date_of_birth'=>'required|date_format:d/m/Y',
             'place_of_birth'=>'required',
             'civil_status'=>'required|in:married,separated,single,divorced,widower',
+            'cover'=>'image',
 
             // Income RENDA
             'occupation'=>'required',

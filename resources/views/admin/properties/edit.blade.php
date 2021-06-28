@@ -109,6 +109,16 @@
                             </select>
                         </label>
 
+                        <div class="label_g2">
+                            <label class="label">
+                                <span class="legend">Status: {{ $property->status}}</span>
+                                <select name="status" class="selct">
+                                    <option value="1" {{ (old('status') == '1' ? 'selected' : ($property->status == true ? 'selected' : '')) }}>Disponivel</option>
+                                    <option value="0" {{ (old('status') == '0' ? 'selected' : ($property->status == false ? 'selected' : ''))}}>Indisponivel</option>
+                                </select>
+                            </label>
+                        </div>
+
                         <div class="app_collapse">
                             <div class="app_collapse_header mt-2 collapse">
                                 <h3>Precificação e Valores</h3>

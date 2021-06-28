@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contract;
 use App\Http\Controllers\Controller;
+use App\Property;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +22,26 @@ class AuthController extends Controller
     }
 
     public function home(){
-        return view('admin.dashboard');
+
+        $lessors = User::lessors()->count();
+        $lessees = User::lessees()->count();
+        $team = User::where('admin', 1)->count();
+
+        $propertiesAvailable = Property::available()->count();
+        $propertiesUnavailable = Property::unavailable()->count();
+        $propertiesTotal = Property::all()->count();
+
+        $contractsPendent = Contract::pendent()->count();
+        $contractsActive = Contract::active()->count();
+        $contractsCanceled= Contract::canceled()->count();
+        $contractsTotal = Contract::all()->count();
+
+        $contracts = Contract::orderBy('id', 'DESC')->limit(10)->get();
+
+        $properties = Property::orderBy('id', 'DESC')->limit(3)->get();
+
+        return view('admin.dashboard', compact('lessors', 'lessees', 'team', 'propertiesAvailable', 'propertiesUnavailable', 'propertiesTotal',
+        'contractsPendent', 'contractsActive', 'contractsCanceled', 'contractsTotal', 'contracts', 'properties'));
     }
 
     public function login(Request $request){

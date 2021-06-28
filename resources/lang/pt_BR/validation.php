@@ -202,6 +202,7 @@ return [
         'income' => 'renda',
         'company_work' => 'empresa',
         'civil_status' => 'estado civil',
+        'married' => 'casado',
 
         //empresas
         'social_name'=>'razão social',
@@ -224,6 +225,24 @@ return [
         'spouse_income' => 'renda do cônjuge',
         'spouse_company_work' => 'empresa do cônjuge',
 
+        //contracts
+        'owner' => 'proprietário',
+        'acquirer' => 'adquirente',
+        'property' => 'imóvel',
+        'start_at' => 'data de início',
+
+        //property
+        'user' => 'usuário',
+        'tribute' => 'IPTU',
+        'condominium' => 'condomínio',
+        'bedrooms' => 'quartos',
+        'suites' => 'suítes',
+        'bathrooms' => 'quartos',
+        'rooms' => 'salas',
+        'garage' => 'garagem',
+        'garage_covered' => 'garagem coberta',
+        'area_total' => 'área total',
+        'area_util' => 'área útil',
 
     ],
 

@@ -44,14 +44,14 @@ class Property extends FormRequest
             'area_total'=>'required',
             'area_util'=>'required',
 
-              // Adrdess  ENDEREÇO
-              'zipcode'=>'required|min:8|max:9',
-              'street'=>'required',
-              'number'=>'required',
-              'neighborhood'=>'required',
-              'number'=>'required',
-              'state'=>'required',
-              'city'=>'required',
+            // Adrdess  ENDEREÇO
+            'zipcode'=>'required|min:8|max:9',
+            'street'=>'required',
+            'number'=>'required',
+            'neighborhood'=>'required',
+            'number'=>'required',
+            'state'=>'required',
+            'city'=>'required',
         ];
     }
 }

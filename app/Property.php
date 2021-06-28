@@ -52,7 +52,8 @@ class Property extends Model
         'steam_room',
         'view_of_the_sea',
         'balcony',
-        'gourmet_balcony'
+        'gourmet_balcony',
+        'status'
     ];
 
 
@@ -80,6 +81,14 @@ class Property extends Model
         return Storage::url(Cropper::thumb($cover['path'], 1366, 768));
     }
 
+    public function scopeAvailable($query){
+        return $query->where('status', 1);
+    }
+
+    public function scopeUnavailable($query){
+        return $query->where('status', 0);
+    }
+
     public function setSaleAttribute($value)
     {
        $this->attributes['sale'] = ($value == true || $value == 'on' ? 1 : 0 );
@@ -89,6 +98,13 @@ class Property extends Model
     {
        $this->attributes['rent'] = ($value == true || $value == 'on' ? 1 : 0 );
     }
+
+
+    public function setStatusAttribute($value)
+    {
+       $this->attributes['status'] = ($value == true || $value == 'on' ? 1 : 0 );
+    }
+
 
 
 
